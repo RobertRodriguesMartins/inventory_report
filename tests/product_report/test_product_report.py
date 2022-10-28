@@ -5,7 +5,8 @@ from inventory_report.inventory.product import Product
 def test_relatorio_produto():
     expected_report = (
         "O produto farinha fabricado em 01-05-2021 por "
-        "Farinini com validade até 02-06-2023 precisa ser armazenado ao abrigo de luz."
+        "Farinini com validade até 02-06-2023 "
+        "precisa ser armazenado ao abrigo de luz."
     )
     product = Product(
         1,
