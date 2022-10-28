@@ -11,7 +11,24 @@ def generate_test_product():
 
 
 def test_cria_produto(generate_test_product):
-    data = ["mm"] * 6
-    assert Product(1, *data).id == 1
+    atributes = [
+        "nome_do_produto",
+        "nome_da_empresa",
+        "data_de_fabricacao",
+        "data_de_validade",
+        "numero_de_serie",
+        "instrucoes_de_armazenamento",
+    ]
+
+    data = [f"d{i}" for i, d in enumerate(atributes)]
+    product = Product(1, *data)
+    assert product.id == 1
+    assert isinstance(product.id, int)
+
+    for index, pr in enumerate(atributes):
+        assert hasattr(product, pr)
+        assert getattr(product, pr) == data[index]
+        assert isinstance(getattr(product, pr), str)
+
     with pytest.raises(TypeError):
         assert generate_test_product()
