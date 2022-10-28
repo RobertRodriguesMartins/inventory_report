@@ -20,7 +20,7 @@ def test_cria_produto(generate_test_product):
         "instrucoes_de_armazenamento",
     ]
 
-    data = [f"d{i}" for i, d in enumerate(atributes)]
+    data = [f"d{i}" for i in enumerate(atributes)]
     product = Product(1, *data)
     assert product.id == 1
     assert isinstance(product.id, int)
