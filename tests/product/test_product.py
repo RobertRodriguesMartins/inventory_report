@@ -13,5 +13,5 @@ def generate_test_product():
 def test_cria_produto(generate_test_product):
     data = ["mm"] * 6
     assert Product(1, *data).id == 1
-    with pytest.raises(TypeError) as err:
+    with pytest.raises(TypeError):
         assert generate_test_product()
