@@ -19,3 +19,5 @@ def test_relatorio_produto():
         print(product, file=my_stream, end="")
         print(expected_report, file=my_test_stream, end="")
         assert my_stream.getvalue() == my_test_stream.getvalue()
+
+    my_test_stream.close()
