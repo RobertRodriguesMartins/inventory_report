@@ -1,5 +1,17 @@
-# from inventory_report.inventory.product import Product
+import pytest
+from inventory_report.inventory.product import Product
 
 
-def test_cria_produto():
-    pass  # Seu teste deve ser escrito aqui
+@pytest.fixture
+def generate_test_product():
+    class ProductTest(Product):
+        pass
+
+    return ProductTest
+
+
+def test_cria_produto(generate_test_product):
+    data = ["mm"] * 6
+    assert Product(1, *data).id == 1
+    with pytest.raises(TypeError) as err:
+        assert generate_test_product()
