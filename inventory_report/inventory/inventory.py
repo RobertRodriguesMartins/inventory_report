@@ -7,6 +7,13 @@ import json
 
 class Inventory:
     @classmethod
+    def generate_relatory(cls, relatory_type, products_list):
+        if relatory_type.title() == "Simples":
+            return SimpleReport.generate(products_list)
+        else:
+            return CompleteReport.generate(products_list)
+
+    @classmethod
     def import_data(cls, path, relatory_type):
         products_list = []
         if ".json" in path:
@@ -18,13 +25,10 @@ class Inventory:
                 reader = csv.DictReader(file)
                 products_data = [row_as_dict for row_as_dict in reader]
                 products_list = products_data
-        elif ".xml" in path:
+        else:
             with open(path, mode="rb") as file:
                 dict_file = xmltodict.parse(file)
                 data = dict_file
                 products_list = data["dataset"]["record"]
 
-        if relatory_type.title() == "Simples":
-            return SimpleReport.generate(products_list)
-        elif relatory_type.title() == "Completo":
-            return CompleteReport.generate(products_list)
+        return cls.generate_relatory(relatory_type, products_list)
