@@ -43,14 +43,11 @@ class DateManager:
 
     @classmethod
     def calculate_companies_products_quantity(cls, product_spec_list):
-        companies_list = [
-            product["nome_da_empresa"] for product in product_spec_list
-        ]
         companies = {}
 
         for company in product_spec_list:
             company_name = company["nome_da_empresa"]
-            if not company_name in companies:
+            if company_name not in companies:
                 companies[company_name] = 1
             else:
                 companies[company_name] += 1
