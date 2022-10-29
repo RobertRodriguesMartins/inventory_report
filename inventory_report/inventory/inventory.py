@@ -1,6 +1,7 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 import csv
+import xmltodict
 import json
 
 
@@ -9,7 +10,7 @@ class Inventory:
     def import_data(cls, path, relatory_type):
         products_list = []
         if ".json" in path:
-            with open(path, mode="r", newline="") as file:
+            with open(path, mode="r") as file:
                 products_data = json.load(file)
                 products_list = products_data
         elif ".csv" in path:
@@ -17,6 +18,11 @@ class Inventory:
                 reader = csv.DictReader(file)
                 products_data = [row_as_dict for row_as_dict in reader]
                 products_list = products_data
+        elif ".xml" in path:
+            with open(path, mode="rb") as file:
+                dict_file = xmltodict.parse(file)
+                data = dict_file
+                products_list = data["dataset"]["record"]
 
         if relatory_type.title() == "Simples":
             return SimpleReport.generate(products_list)
