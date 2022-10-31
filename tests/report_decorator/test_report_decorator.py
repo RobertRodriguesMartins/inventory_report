@@ -39,7 +39,6 @@ def test_decorar_relatorio(data):
         "Empresa com mais produtos",
     ]
     products_list = data
-    report_type = SimpleReport
     colored_report = ColoredReport(SimpleReport)
     report = colored_report.generate(products_list)
     report_test = report.split("\n")
@@ -47,6 +46,6 @@ def test_decorar_relatorio(data):
         should_be_green, simple_report = phrase.split(":")
         assert f'\033[32m{green_phrases[index]}' == should_be_green
         try:
-            assert f'\033[36m' in simple_report
+            assert "\033[36m" in simple_report
         except AssertionError:
-            assert f'\033[31m' in simple_report
+            assert "\033[31m" in simple_report
