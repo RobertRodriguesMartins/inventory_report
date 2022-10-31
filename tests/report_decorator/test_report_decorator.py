@@ -44,7 +44,7 @@ def test_decorar_relatorio(data):
     report_test = report.split("\n")
     for index, phrase in enumerate(report_test):
         should_be_green, simple_report = phrase.split(":")
-        assert f'\033[32m{green_phrases[index]}' == should_be_green
+        assert f"\033[32m{green_phrases[index]}" == should_be_green
         try:
             assert "\033[36m" in simple_report
         except AssertionError:
