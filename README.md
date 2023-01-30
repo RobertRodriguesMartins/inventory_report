@@ -56,4 +56,4 @@
 
   <code>python3 -m inventory_report.main argumento1 argumento2</code>
 
-</details>
+</details> 
