@@ -24,3 +24,5 @@ def main():
         report_generator(strategies, relatory_path, relatory_type)
     except IndexError:
         print("Verifique os argumentos", file=sys.stderr)
+
+main();
